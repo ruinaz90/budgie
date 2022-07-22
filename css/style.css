@@ -1,0 +1,38 @@
+/***BASICS***/
+/* PURPLE: 2e1435*/
+
+/*box model*/
+* {
+    box-sizing: border-box;
+}
+
+/*fonts*/
+@font-face {
+    font-family: "Quicksand";
+    src: url(Quicksand-Regular.otf);
+}
+@font-face {
+    font-family: "Quicksand Light";
+    src: url(Quicksand-Light.otf);
+}
+
+/*defaults*/
+html {
+    font-size: 62.5%;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+/***LAYOUT***/
+body {
+    font-size: 1.4rem;
+}
+
+header {
+    background: #2e1435;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+/***ADDITIONAL STYLES***/
