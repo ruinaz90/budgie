@@ -20,6 +20,11 @@ MongoClient.connect(connectionString, {
             res.sendFile(__dirname + '/index.html')
         })
 
+        app.post('/add-category', (req, res) => {
+            console.log("Add category")
+            res.redirect('/')
+        })
+
         app.listen(3000, function() {
             console.log("listening on 3000")
         })
