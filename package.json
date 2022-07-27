@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/ruinaz90/budgie#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mongodb": "^4.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
