@@ -17,15 +17,17 @@ MongoClient.connect(connectionString, {
         const budgets = db.collection('budgets')
 
         app.get('/', (req, res) => {
-            res.sendFile(__dirname + '/index.html')
+            res.render('index.ejs', {})
         })
 
         app.post('/add-category', (req, res) => {
-            console.log("Add category")
-            res.redirect('/')
+            budgets.insertOne(req.body)
+            .then(result => res.redirect('/'))
+            .catch(error => console.error(error))
         })
 
         app.listen(3000, function() {
             console.log("listening on 3000")
         })
     })
+    .catch(error => console.error(error))
