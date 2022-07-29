@@ -20,10 +20,13 @@
         <section class="categories">
             <h2>Categories</h2>
             <form action="/add-category" method="POST">
-                <input type="text" placeholder="Category" name="category">
+                <input type="text" name="category" id="category" placeholder="Category">
+                <input type="number" name="amount" id="amount" step="0.01">
                 <button type="submit">Add</button>
             </form>
         </section>
     </main>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

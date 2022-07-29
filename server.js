@@ -21,7 +21,10 @@ MongoClient.connect(connectionString, {
         })
 
         app.post('/add-category', (req, res) => {
-            budgets.insertOne(req.body)
+            budgets.insertOne({
+                category: req.body.category,
+                amount: Number(parseFloat(req.body.amount).toFixed(2))
+            })
             .then(result => res.redirect('/'))
             .catch(error => console.error(error))
         })
