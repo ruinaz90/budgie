@@ -1,36 +1,19 @@
 const express = require('express')
 const app = express()
-const MongoClient = require('mongodb').MongoClient
-const bodyParser = require('body-parser')
-const connectionString = 'mongodb+srv://admin:pass@cluster0.1brh5bj.mongodb.net/?retryWrites=true&w=majority'
+const connectDB = require('./config/database')
+const homeRoutes = require('./routes/home')
+
+require('dotenv').config({path: './config/.env'})
+
+connectDB()
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: true}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
-MongoClient.connect(connectionString, {
-    useUnifiedTopology: true })
-    .then(client => {
-        console.log("Connected to database")
-        const db = client.db('Budgie')
-        const budgets = db.collection('budgets')
+app.use('/', homeRoutes)
 
-        app.get('/', (req, res) => {
-            res.render('index.ejs', {})
-        })
-
-        app.post('/add-category', (req, res) => {
-            budgets.insertOne({
-                category: req.body.category,
-                amount: Number(parseFloat(req.body.amount).toFixed(2))
-            })
-            .then(result => res.redirect('/'))
-            .catch(error => console.error(error))
-        })
-
-        app.listen(3000, function() {
-            console.log("listening on 3000")
-        })
-    })
-    .catch(error => console.error(error))
+app.listen(process.env.PORT, ()=>{
+    console.log('Server is running, you better catch it!')
+})
